@@ -15,10 +15,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const appUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(appUrl),
+  ...(appUrl ? { metadataBase: new URL(appUrl) } : {}),
   title: {
     default: "Plus Alpha Intern — Internships & Verified Certificates",
     template: "%s | Plus Alpha Intern",

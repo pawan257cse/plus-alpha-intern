@@ -1,9 +1,38 @@
 import axios from "axios";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const configuredApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/$/, "");
+
+export const getApiBaseUrl = () => {
+  if (configuredApiUrl) {
+    return configuredApiUrl;
+  }
+
+  if (typeof window !== "undefined") {
+    return `${window.location.origin}/api`;
+  }
+
+  return "";
+};
+
+export const getApiOrigin = () => {
+  const baseUrl = getApiBaseUrl();
+
+  if (!baseUrl) {
+    return typeof window !== "undefined" ? window.location.origin : "";
+  }
+
+  return baseUrl.replace(/\/api\/?$/, "");
+};
+
+export const buildApiUrl = (path: string) => {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const baseUrl = getApiBaseUrl();
+
+  return baseUrl ? `${baseUrl}${normalizedPath}` : normalizedPath;
+};
 
 export const api = axios.create({
-  baseURL: API_URL,
+  baseURL: getApiBaseUrl() || undefined,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
@@ -35,7 +64,7 @@ api.interceptors.response.use(
         isRefreshing = true;
         original._retry = true;
         try {
-          const { data } = await axios.post(`${API_URL}/auth/refresh`, { refreshToken });
+          const { data } = await axios.post(buildApiUrl("/auth/refresh"), { refreshToken });
           if (data.success && data.data.token) {
             localStorage.setItem("token", data.data.token);
             original.headers.Authorization = `Bearer ${data.data.token}`;

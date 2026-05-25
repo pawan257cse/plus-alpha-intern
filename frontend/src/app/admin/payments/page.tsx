@@ -8,7 +8,7 @@ import { Loader2, ArrowLeft, Check, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/auth-store";
-import api from "@/lib/api";
+import api, { getApiOrigin } from "@/lib/api";
 
 interface PaymentRow {
   _id: string;
@@ -33,6 +33,7 @@ export default function AdminPaymentsPage() {
   const [loading, setLoading] = useState(true);
   const [payments, setPayments] = useState<PaymentRow[]>([]);
   const [filter, setFilter] = useState("pending");
+  const apiOrigin = getApiOrigin();
 
   const load = () => {
     api
@@ -122,7 +123,7 @@ export default function AdminPaymentsPage() {
                     href={
                       p.metadata.proofUrl.startsWith("http")
                         ? p.metadata.proofUrl
-                        : `${process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "http://localhost:5000"}${p.metadata.proofUrl}`
+                        : `${apiOrigin}${p.metadata.proofUrl}`
                     }
                     target="_blank"
                     rel="noopener noreferrer"
