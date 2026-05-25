@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, type Request, type Response } from "express";
 import authRoutes from "./authRoutes.js";
 import internshipRoutes from "./internshipRoutes.js";
 import courseRoutes from "./courseRoutes.js";
@@ -25,7 +25,7 @@ router.use("/company", companyRoutes);
 router.use("/community", communityRoutes);
 router.use("/blogs", blogRoutes);
 
-router.get("/health", (_req, res) => {
+router.get("/health", (_req: Request, res: Response) => {
   res.json({ success: true, message: "Plus Alpha Intern API is running" });
 });
 
