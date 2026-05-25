@@ -1,0 +1,269 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f7ff;
+  --foreground: #0c0a14;
+  --muted: #ede9fe;
+  --muted-foreground: #4a4568;
+  --card: rgba(255, 255, 255, 0.92);
+  --border: rgba(109, 40, 217, 0.18);
+  --primary: #6d28d9;
+  --primary-foreground: #ffffff;
+  --accent: #a855f7;
+  --glow: rgba(139, 92, 246, 0.22);
+  --secondary-text: #3d3854;
+}
+
+.dark {
+  --background: #05030f;
+  --foreground: #f4f2ff;
+  --muted: #120c24;
+  --muted-foreground: #a8a3c4;
+  --card: rgba(18, 12, 36, 0.82);
+  --border: rgba(167, 139, 250, 0.16);
+  --primary: #8b5cf6;
+  --primary-foreground: #ffffff;
+  --accent: #c084fc;
+  --glow: rgba(167, 139, 250, 0.28);
+  --secondary-text: #cbd5e1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-text: var(--secondary-text);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+  color: #fff;
+}
+
+/* Theme-aware text — use instead of text-slate-* on page content */
+.pai-heading {
+  color: var(--foreground);
+}
+
+.pai-subtext {
+  color: var(--secondary-text);
+}
+
+.pai-muted {
+  color: var(--muted-foreground);
+}
+
+.pai-surface {
+  background: var(--card);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+    0 12px 40px -16px rgba(76, 29, 149, 0.15);
+}
+
+.dark .pai-surface {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 20px 50px -20px rgba(76, 29, 149, 0.22);
+}
+
+.pai-gradient-border {
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+    linear-gradient(135deg, #a855f7, #6366f1, #ec4899, #a855f7) border-box;
+  border: 1px solid transparent;
+}
+
+.pai-brand-text {
+  background: linear-gradient(
+    120deg,
+    #5b21b6 0%,
+    #7c3aed 30%,
+    #a855f7 55%,
+    #6366f1 80%,
+    #5b21b6 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pai-shimmer 8s linear infinite;
+}
+
+.dark .pai-brand-text {
+  background: linear-gradient(
+    120deg,
+    #c4b5fd 0%,
+    #a78bfa 25%,
+    #f0abfc 50%,
+    #818cf8 75%,
+    #c4b5fd 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes pai-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.pai-grid-bg {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 70%);
+}
+
+.dark .pai-grid-bg {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+}
+
+.pai-nav-shell {
+  background: linear-gradient(135deg, rgba(12, 6, 28, 0.98), rgba(8, 4, 18, 0.96));
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(139, 92, 246, 0.08);
+  backdrop-filter: blur(20px);
+}
+
+.pai-footer {
+  background: linear-gradient(180deg, #0a0618 0%, #05030f 100%);
+  color: #e2e8f0;
+}
+
+.pai-nav-dropdown {
+  background: rgba(15, 10, 32, 0.98);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.pai-announce-bar {
+  background: linear-gradient(90deg, rgba(109, 40, 217, 0.35), rgba(236, 72, 153, 0.12));
+  border-bottom: 1px solid rgba(167, 139, 250, 0.12);
+}
+
+.pai-nav-link {
+  position: relative;
+  transition: color 0.2s, background 0.2s;
+}
+
+.pai-nav-link-active {
+  color: #e9d5ff;
+  background: rgba(139, 92, 246, 0.15);
+  box-shadow: inset 0 0 24px rgba(139, 92, 246, 0.12);
+}
+
+.pai-nav-link-active::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+}
+
+.pai-input {
+  border: 1px solid rgba(109, 40, 217, 0.25);
+  background: #ffffff;
+  color: var(--foreground);
+  backdrop-filter: blur(12px);
+}
+
+.dark .pai-input {
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  background: rgba(139, 92, 246, 0.06);
+}
+
+.pai-input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.pai-input:focus {
+  outline: none;
+  border-color: rgba(109, 40, 217, 0.5);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.pai-card-hover {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.pai-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(109, 40, 217, 0.35);
+  box-shadow: 0 24px 48px -16px var(--glow);
+}
+
+.pai-section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.pai-stat-pill {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.06));
+  border: 1px solid rgba(109, 40, 217, 0.2);
+  color: var(--foreground);
+}
+
+.dark .pai-stat-pill {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(99, 102, 241, 0.08));
+  border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+.pai-hero-glow {
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 0%,
+    rgba(139, 92, 246, 0.15),
+    rgba(236, 72, 153, 0.05) 45%,
+    transparent 70%
+  );
+}
+
+.dark .pai-hero-glow {
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 0%,
+    rgba(139, 92, 246, 0.28),
+    rgba(236, 72, 153, 0.08) 45%,
+    transparent 70%
+  );
+}

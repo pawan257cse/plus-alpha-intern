@@ -1,0 +1,15 @@
+{
+  "name": "plus-alpha-intern",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plus Alpha Intern — AI internship & learning platform",
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
