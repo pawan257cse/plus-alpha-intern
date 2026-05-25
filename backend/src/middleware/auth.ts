@@ -5,6 +5,7 @@ import { sendError } from "../utils/apiResponse.js";
 
 export interface AuthRequest extends Request<Record<string, string>, any, Record<string, any>> {
   user?: IUser;
+  file?: Express.Multer.File;
 }
 
 interface JwtPayload {
