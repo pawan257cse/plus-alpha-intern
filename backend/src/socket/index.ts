@@ -1,6 +1,7 @@
 import { Server as HttpServer } from "http";
 import { Server, Socket } from "socket.io";
 import jwt from "jsonwebtoken";
+import { ALLOWED_ORIGINS } from "../config/runtime.js";
 
 interface SocketUser {
   id: string;
@@ -10,7 +11,7 @@ interface SocketUser {
 export const initSocket = (httpServer: HttpServer): Server => {
   const io = new Server(httpServer, {
     cors: {
-      origin: process.env.CLIENT_URL || "http://localhost:3000",
+      origin: ALLOWED_ORIGINS,
       credentials: true,
     },
   });

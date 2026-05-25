@@ -8,6 +8,7 @@ import { AuthRequest } from "../middleware/auth.js";
 import { sendSuccess, sendError } from "../utils/apiResponse.js";
 import { isEmailVerificationEnabled } from "../utils/tokens.js";
 import { signAccessToken, signRefreshToken } from "../utils/tokens.js";
+import { accessTokenCookieOptions, refreshTokenCookieOptions } from "../config/runtime.js";
 
 export const companyRegisterValidation = [
   body("name").trim().notEmpty().withMessage("Contact name required"),
@@ -21,7 +22,8 @@ export const registerCompany = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const { name, email, password, companyName, companyWebsite, phone } = req.body;
+    const { name, password, companyName, companyWebsite, phone } = req.body;
+    const email = String(req.body.email || "").trim().toLowerCase();
     const exists = await User.findOne({ email });
     if (exists) return sendError(res, "Email already registered", 409);
 
@@ -47,6 +49,8 @@ export const registerCompany = async (
     const refreshToken = signRefreshToken(user._id.toString());
     user.refreshToken = refreshToken;
     await user.save();
+    res.cookie("token", accessToken, accessTokenCookieOptions);
+    res.cookie("refreshToken", refreshToken, refreshTokenCookieOptions);
 
     return sendSuccess(
       res,

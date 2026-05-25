@@ -8,11 +8,14 @@ import path from "path";
 import { createServer } from "http";
 import { connectDB } from "./config/db.js";
 import { configureCloudinary } from "./config/cloudinary.js";
+import { ALLOWED_ORIGINS } from "./config/runtime.js";
 import routes from "./routes/index.js";
 import { initSocket } from "./socket/index.js";
 
 const app = express();
 const httpServer = createServer(app);
+
+app.set("trust proxy", 1);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -23,10 +26,7 @@ const limiter = rateLimit({
 app.use(helmet());
 app.use(
   cors({
-    origin: [
-      process.env.CLIENT_URL || "http://localhost:3000",
-      process.env.ADMIN_URL || "http://localhost:3001",
-    ],
+    origin: ALLOWED_ORIGINS,
     credentials: true,
   })
 );

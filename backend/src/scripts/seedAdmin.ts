@@ -2,6 +2,7 @@ import "dotenv/config";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import { User } from "../models/User";
+import { FRONTEND_URL } from "../config/runtime.js";
 
 const ADMIN_EMAIL = "admin@plusalphaintern.com";
 const ADMIN_PASSWORD = "Admin@123456";
@@ -54,8 +55,8 @@ async function seedAdmin() {
   console.log("\n--- Admin login ---");
   console.log("Email:    ", ADMIN_EMAIL);
   console.log("Password: ", ADMIN_PASSWORD);
-  console.log("Login:    http://localhost:3000/admin/login");
-  console.log("Dashboard: http://localhost:3000/admin/dashboard\n");
+  console.log(`Login:    ${FRONTEND_URL}/admin/login`);
+  console.log(`Dashboard: ${FRONTEND_URL}/admin/dashboard\n`);
 
   await mongoose.disconnect();
   process.exit(0);

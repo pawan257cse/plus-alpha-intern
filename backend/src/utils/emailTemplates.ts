@@ -1,5 +1,7 @@
+import { FRONTEND_URL } from "../config/runtime.js";
+
 const brandColor = "#6366f1";
-const clientUrl = process.env.CLIENT_URL || "http://localhost:3000";
+const clientUrl = FRONTEND_URL;
 const supportEmail = process.env.SUPPORT_EMAIL || "plusalphaintern@gmail.com";
 
 const baseLayout = (content: string) => `

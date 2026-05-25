@@ -2,11 +2,11 @@
   "name": "plus-alpha-intern-backend",
   "version": "1.0.0",
   "description": "Plus Alpha Intern API — internship, learning & certification platform",
-  "main": "dist/server.js",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
     "seed:admin": "tsx src/scripts/seedAdmin.ts",
     "db:check": "tsx src/scripts/seedAdmin.ts"
@@ -30,9 +30,9 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.0",
+    "nodemon": "^3.1.10",
     "multer": "^1.4.5-lts.2",
     "nodemailer": "^6.10.1",
-    "plus-alpha-intern": "file:..",
     "razorpay": "^2.9.6",
     "socket.io": "^4.8.1"
   },

@@ -18,9 +18,14 @@ import {
   calcProfileCompletion,
 } from "../utils/tokens.js";
 import { applyLoginStreakAndRewards } from "../utils/gamification.js";
+import {
+  accessTokenCookieOptions,
+  buildClientUrl,
+  clearAuthCookieOptions,
+  refreshTokenCookieOptions,
+} from "../config/runtime.js";
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-const clientUrl = process.env.CLIENT_URL || "http://localhost:3000";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sanitizeUser = (user: any) => ({
@@ -70,6 +75,16 @@ const issueTokens = async (user: InstanceType<typeof User>) => {
   return { accessToken, refreshToken };
 };
 
+const setAuthCookies = (res: Response, accessToken: string, refreshToken: string) => {
+  res.cookie("token", accessToken, accessTokenCookieOptions);
+  res.cookie("refreshToken", refreshToken, refreshTokenCookieOptions);
+};
+
+const clearAuthCookies = (res: Response) => {
+  res.cookie("token", "", clearAuthCookieOptions);
+  res.cookie("refreshToken", "", clearAuthCookieOptions);
+};
+
 
 export const registerValidation = [
   body("name").trim().notEmpty().withMessage("Name is required"),
@@ -91,9 +106,9 @@ export const register = async (
   res: Response
 ): Promise<Response> => {
   try {
+    const email = String(req.body.email || "").trim().toLowerCase();
     const {
       name,
-      email,
       password,
       phone,
       college,
@@ -189,6 +204,7 @@ export const register = async (
     }
 
     const { accessToken, refreshToken } = await issueTokens(user);
+    setAuthCookies(res, accessToken, refreshToken);
     return sendSuccess(
       res,
       {
@@ -211,7 +227,8 @@ export const verifyOTP = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const { email, otp } = req.body;
+    const email = String(req.body.email || "").trim().toLowerCase();
+    const { otp } = req.body;
     const user = await User.findOne({ email }).select("+otp +otpExpires +password");
     if (!user || user.otp !== otp) {
       return sendError(res, "Invalid OTP", 400);
@@ -231,6 +248,7 @@ export const verifyOTP = async (
     await user.save();
 
     const { accessToken, refreshToken } = await issueTokens(user);
+    setAuthCookies(res, accessToken, refreshToken);
     return sendSuccess(res, { token: accessToken, refreshToken, user: sanitizeUser(user) }, "Email verified");
   } catch {
     return sendError(res, "Verification failed", 500);
@@ -275,6 +293,7 @@ export const login = async (
 
     applyLoginStreakAndRewards(user);
     const { accessToken, refreshToken } = await issueTokens(user);
+    setAuthCookies(res, accessToken, refreshToken);
 
     return sendSuccess(res, {
       token: accessToken,
@@ -303,7 +322,7 @@ export const refreshAccessToken = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const { refreshToken } = req.body;
+    const refreshToken = req.body.refreshToken || req.cookies?.refreshToken;
     if (!refreshToken) return sendError(res, "Refresh token required", 400);
 
     const decoded = jwt.verify(
@@ -317,6 +336,7 @@ export const refreshAccessToken = async (
     }
 
     const accessToken = signAccessToken(user._id.toString(), user.role);
+    res.cookie("token", accessToken, accessTokenCookieOptions);
     return sendSuccess(res, { token: accessToken, user: sanitizeUser(user) });
   } catch {
     return sendError(res, "Token refresh failed", 401);
@@ -332,6 +352,7 @@ export const logout = async (
       req.user.refreshToken = undefined;
       await req.user.save();
     }
+    clearAuthCookies(res);
     return sendSuccess(res, null, "Logged out");
   } catch {
     return sendError(res, "Logout failed", 500);
@@ -367,6 +388,7 @@ export const googleLogin = async (
 
     applyLoginStreakAndRewards(user);
     const { accessToken, refreshToken } = await issueTokens(user);
+    setAuthCookies(res, accessToken, refreshToken);
     return sendSuccess(res, {
       token: accessToken,
       refreshToken,
@@ -431,7 +453,7 @@ export const forgotPassword = async (
     user.resetPasswordExpires = new Date(Date.now() + 60 * 60 * 1000);
     await user.save();
 
-    const resetUrl = `${clientUrl}/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}`;
+    const resetUrl = `${buildClientUrl("/reset-password")}?token=${resetToken}&email=${encodeURIComponent(email)}`;
     await sendResetPasswordEmail({ to: email, name: user.name, resetUrl });
 
     return sendSuccess(res, { method: "link" }, "Reset link sent to email");
