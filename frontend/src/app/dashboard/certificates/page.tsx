@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Award, Download, ExternalLink, LinkedinIcon, Loader2 } from "lucide-react";
+import { Award, Download, ExternalLink, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import api from "@/lib/api";
@@ -91,8 +91,10 @@ export default function CertificatesPage() {
                     Verify
                   </Button>
                 </Link>
-                <Button size="sm" onClick={() => shareLinkedIn(cert)}>
-                  <Linkedin className="mr-1 h-4 w-4" />
+                <Button size="sm" onClick={() => shareLinkedIn(cert)} className="bg-[#0077b5] hover:bg-[#0077b5]/90 text-white">
+                  <svg className="mr-1 h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C0.792 0 0 0.774 0 1.729v20.542C0 23.227 0.792 24 1.771 24h20.451c0.979 0 1.771-0.773 1.771-1.729V1.729C24 0.774 23.203 0 22.225 0z"/>
+                  </svg>
                   Share on LinkedIn
                 </Button>
               </div>

@@ -137,7 +137,7 @@ export default function AdminUsersPage() {
                       </Button>
                     )}
                     {u.role !== "admin" && (
-                      <Button size="sm" variant="destructive" onClick={() => remove(u._id)}>
+                      <Button size="sm" variant="outline" onClick={() => remove(u._id)}>
                         <Trash2 className="h-3 w-3" />
                       </Button>
                     )}

@@ -87,7 +87,7 @@ export default function AdminContentPage() {
             {blogs.map((b) => (
               <li key={b._id} className="flex justify-between rounded-lg border border-white/10 p-3">
                 <span>{b.title} {b.isPublished ? "" : "(draft)"}</span>
-                <Button size="sm" variant="destructive" onClick={() => remove(b._id)}>
+                <Button size="sm" variant="outline" onClick={() => remove(b._id)}>
                   Delete
                 </Button>
               </li>
