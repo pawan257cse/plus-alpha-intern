@@ -1,17 +1,17 @@
 import axios from "axios";
 
 const configuredApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/$/, "");
+const fallbackApiUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://plus-alpha-intern-backend.onrender.com/api"
+    : "http://localhost:5000/api";
 
 export const getApiBaseUrl = () => {
   if (configuredApiUrl) {
     return configuredApiUrl;
   }
 
-  if (typeof window !== "undefined") {
-    return `${window.location.origin}/api`;
-  }
-
-  return "";
+  return fallbackApiUrl;
 };
 
 export const getApiOrigin = () => {
