@@ -20,11 +20,11 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-6 flex flex-wrap items-center justify-center gap-3"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-violet-500/40 bg-violet-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-violet-800 dark:text-violet-200">
-            <Sparkles className="h-3.5 w-3.5 text-violet-600 dark:text-fuchsia-300" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-cyan-800 dark:text-cyan-200">
+            <Sparkles className="h-3.5 w-3.5 text-cyan-500 dark:text-emerald-300" />
             {SITE_CONFIG.name}
           </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-500/40 bg-fuchsia-500/10 px-3 py-1.5 text-xs font-medium text-fuchsia-800 dark:text-fuchsia-200">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-800 dark:text-emerald-200">
             <IndianRupee className="h-3.5 w-3.5" />
             Pay only when you submit task
           </span>

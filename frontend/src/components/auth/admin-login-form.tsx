@@ -60,10 +60,10 @@ function AdminLoginFormInner() {
   };
 
   return (
-    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-white/5">
+    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-[rgba(8,10,22,0.55)]">
       <CardHeader className="text-center pb-2">
-        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20">
-          <Shield className="h-6 w-6 text-violet-500" />
+        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/20">
+          <Shield className="h-6 w-6 text-cyan-500" />
         </div>
         <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>
         <CardDescription className="pai-subtext">
@@ -113,7 +113,7 @@ function AdminLoginFormInner() {
 
         <p className="mt-6 text-center text-sm pai-subtext">
           Student account?{" "}
-          <Link href="/login" className="font-medium text-violet-500 hover:underline">
+          <Link href="/login" className="font-medium text-cyan-400 hover:underline dark:text-cyan-300">
             Student login
           </Link>
         </p>
@@ -124,7 +124,7 @@ function AdminLoginFormInner() {
 
 export function AdminLoginForm() {
   return (
-    <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-violet-500" /></div>}>
+    <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-cyan-400" /></div>}>
       <AdminLoginFormInner />
     </Suspense>
   );

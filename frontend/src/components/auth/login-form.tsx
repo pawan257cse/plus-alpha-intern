@@ -61,7 +61,7 @@ function LoginFormInner() {
   };
 
   return (
-    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-white/5">
+    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-[rgba(8,10,22,0.55)]">
       <CardHeader className="text-center pb-2">
         <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
         <CardDescription className="pai-subtext">
@@ -114,7 +114,7 @@ function LoginFormInner() {
               />
               Remember me
             </label>
-            <Link href="/forgot-password" className="text-sm text-violet-500 hover:underline">
+            <Link href="/forgot-password" className="text-sm text-cyan-400 hover:underline dark:text-cyan-300">
               Forgot password?
             </Link>
           </div>
@@ -125,7 +125,7 @@ function LoginFormInner() {
 
         <p className="mt-6 text-center text-sm pai-subtext">
           Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-medium text-violet-500 hover:underline">
+          <Link href="/signup" className="font-medium text-cyan-400 hover:underline dark:text-cyan-300">
             Create account
           </Link>
         </p>
@@ -136,7 +136,7 @@ function LoginFormInner() {
 
 export function LoginForm() {
   return (
-    <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-violet-500" /></div>}>
+    <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-cyan-400" /></div>}>
       <LoginFormInner />
     </Suspense>
   );

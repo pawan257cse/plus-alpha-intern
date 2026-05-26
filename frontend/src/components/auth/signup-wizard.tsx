@@ -129,7 +129,7 @@ function SignupWizardInner() {
               <div
                 className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-colors ${
                   i <= step
-                    ? "bg-violet-600 text-white"
+                  ? "bg-cyan-500 text-white"
                     : "bg-white/10 text-muted-foreground"
                 }`}
               >
@@ -139,7 +139,7 @@ function SignupWizardInner() {
                 {label}
               </span>
               {i < STEPS.length - 1 && (
-                <div className={`h-px w-8 ${i < step ? "bg-violet-500" : "bg-white/10"}`} />
+                <div className={`h-px w-8 ${i < step ? "bg-cyan-500" : "bg-white/10"}`} />
               )}
             </div>
           ))}
@@ -250,7 +250,7 @@ function SignupWizardInner() {
                     <Input type="number" className="pai-input" placeholder="2026" value={form.passingYear} onChange={(e) => setForm({ ...form, passingYear: e.target.value })} min={2020} max={2040} />
                   </div>
                 </div>
-                <p className="text-xs pai-muted rounded-lg bg-violet-500/10 border border-violet-500/20 p-3">
+        <p className="text-xs pai-muted rounded-lg bg-cyan-500/10 border border-cyan-500/20 p-3">
                   LinkedIn, GitHub, resume & profile photo can be added when you submit your internship task.
                 </p>
               </motion.div>
@@ -277,7 +277,7 @@ function SignupWizardInner() {
 
         <p className="mt-6 text-center text-sm pai-subtext">
           Already have an account?{" "}
-          <Link href="/login" className="font-medium text-violet-500 hover:underline">Sign in</Link>
+          <Link href="/login" className="font-medium text-cyan-400 hover:underline dark:text-cyan-300">Sign in</Link>
         </p>
       </CardContent>
     </Card>
@@ -286,7 +286,7 @@ function SignupWizardInner() {
 
 export function SignupWizard() {
   return (
-    <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-violet-500" /></div>}>
+    <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-cyan-400" /></div>}>
       <SignupWizardInner />
     </Suspense>
   );

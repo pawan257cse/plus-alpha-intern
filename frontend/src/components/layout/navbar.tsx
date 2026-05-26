@@ -80,8 +80,8 @@ export function Navbar() {
       isActive(href)
         ? "pai-nav-link-active text-white"
         : highlight
-          ? "text-purple-700 hover:bg-purple-50 hover:text-purple-900"
-          : "text-gray-700 hover:bg-purple-50 hover:text-purple-900"
+          ? "text-slate-700 dark:text-slate-200 hover:bg-white/80 hover:text-slate-900 dark:hover:bg-white/5 dark:hover:text-white"
+          : "text-slate-700 dark:text-slate-200 hover:bg-white/80 hover:text-slate-900 dark:hover:bg-white/5 dark:hover:text-white"
     );
 
   return (
@@ -142,7 +142,7 @@ export function Navbar() {
               href={submitTaskHref}
               className={cn(
                 navLinkClass("/submit-task", true),
-                "ml-0.5 border border-cyan-400/25 bg-gradient-to-r from-cyan-400/12 via-fuchsia-500/10 to-violet-500/12 shadow-[0_0_0_1px_rgba(34,211,238,0.08),0_10px_30px_rgba(14,165,233,0.12)]"
+                "ml-0.5 border border-cyan-400/25 bg-gradient-to-r from-cyan-400/12 via-emerald-500/10 to-cyan-500/12 shadow-[0_0_0_1px_rgba(34,211,238,0.08),0_10px_30px_rgba(14,165,233,0.12)]"
               )}
             >
               Submit Task
@@ -158,7 +158,7 @@ export function Navbar() {
                   "pai-nav-link flex items-center gap-1 rounded-full px-3 py-2 text-[13px] font-medium tracking-[0.01em] xl:px-4 xl:text-sm",
                   resourcesOpen || isResourceActive()
                     ? "pai-nav-link-active text-white"
-                    : "text-gray-700 hover:bg-purple-50 hover:text-purple-900"
+                    : "text-slate-700 dark:text-slate-200 hover:bg-white/5 hover:text-white dark:hover:bg-white/5"
                 )}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -187,7 +187,7 @@ export function Navbar() {
                       <Link
                         key={r.href}
                         href={r.href}
-                        className="block rounded-xl px-3.5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-purple-50 hover:text-purple-900"
+                        className="block rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 transition hover:bg-white/5 hover:text-white"
                         onClick={() => setResourcesOpen(false)}
                       >
                         {r.label}
@@ -254,7 +254,7 @@ export function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="pai-nav-mobile-panel border-t border-violet-500/20 lg:hidden"
+              className="pai-nav-mobile-panel border-t border-cyan-500/20 lg:hidden"
             >
               <div className="max-h-[75vh] space-y-0.5 overflow-y-auto p-3">
                 {[...navLinks, { href: submitTaskHref, label: "Submit Task" }].map((link) => (
@@ -264,7 +264,7 @@ export function Navbar() {
                     className={cn(
                       "pai-nav-mobile-link block rounded-xl px-4 py-3 text-sm font-medium",
                       isActive(link.href.startsWith("/login") ? "/submit-task" : link.href)
-                        ? "bg-violet-500/25 text-white"
+                        ? "bg-cyan-500/20 text-white"
                         : "text-slate-200 hover:bg-white/10 hover:text-white"
                     )}
                     onClick={() => setMobileOpen(false)}

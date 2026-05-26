@@ -46,7 +46,7 @@ export function AuthLayout({ children, title, subtitle }: AuthLayoutProps) {
             <ul className="space-y-4">
               {features.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-center gap-3 text-foreground/80">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/15 text-violet-500 dark:text-violet-400">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-500 dark:text-cyan-400">
                     <Icon className="h-5 w-5" />
                   </span>
                   <span className="text-sm font-medium">{text}</span>

@@ -3,6 +3,7 @@ import { Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/app-providers";
 import { AnimatedBackground } from "@/components/layout/animated-background";
+import { RouteTransitions } from "@/components/layout/route-transitions";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -49,7 +50,7 @@ export default function RootLayout({
       <body className={`${outfit.variable} ${geistMono.variable} min-h-screen antialiased`}>
         <AppProviders>
           <AnimatedBackground />
-          {children}
+          <RouteTransitions>{children}</RouteTransitions>
         </AppProviders>
       </body>
     </html>

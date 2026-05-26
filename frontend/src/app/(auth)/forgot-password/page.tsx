@@ -55,10 +55,10 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-white/5 w-full">
+    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-[rgba(8,10,22,0.55)] w-full">
       <CardHeader className="text-center">
-        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-violet-500/15">
-          <Mail className="h-6 w-6 text-violet-500" />
+        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-500/15">
+          <Mail className="h-6 w-6 text-cyan-500" />
         </div>
         <CardTitle>Reset password</CardTitle>
         <CardDescription className="pai-subtext">
@@ -117,7 +117,7 @@ export default function ForgotPasswordPage() {
             </Button>
           </form>
         )}
-        <Link href="/login" className="mt-4 block text-center text-sm text-violet-500 hover:underline">
+        <Link href="/login" className="mt-4 block text-center text-sm text-cyan-400 hover:underline dark:text-cyan-300">
           Back to login
         </Link>
       </CardContent>

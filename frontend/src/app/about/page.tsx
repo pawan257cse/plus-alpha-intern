@@ -12,7 +12,7 @@ import { CheckCircle2 } from "lucide-react";
 export default function AboutPage() {
   return (
     <PageShell>
-      <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">About Us</p>
+      <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400">About Us</p>
       <h1 className="mt-2 text-3xl font-bold text-foreground md:text-4xl">
         About {SITE_CONFIG.name}
       </h1>
@@ -34,7 +34,7 @@ export default function AboutPage() {
         {ABOUT_FEATURES.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-3 rounded-xl border border-violet-500/15 bg-violet-500/5 px-4 py-3 text-sm pai-subtext"
+            className="flex items-start gap-3 rounded-xl border border-cyan-500/15 bg-cyan-500/5 px-4 py-3 text-sm pai-subtext"
           >
             <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
             {item}

@@ -24,7 +24,7 @@ export function Testimonials() {
               viewport={{ once: true }}
               transition={{ delay: (i % 3) * 0.08 }}
             >
-              <Card className="h-full border-violet-500/15">
+              <Card className="h-full border-cyan-500/15">
                 <CardContent className="pt-6">
                   <div className="mb-2 flex items-center justify-between">
                     <div className="flex gap-1">
@@ -32,7 +32,7 @@ export function Testimonials() {
                         <Star key={j} className="h-4 w-4 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
-                    <span className="rounded-full bg-violet-500/15 px-2 py-0.5 text-[10px] font-medium text-violet-700 dark:text-violet-200">
+                    <span className="rounded-full bg-cyan-500/15 px-2 py-0.5 text-[10px] font-medium text-cyan-700 dark:text-cyan-200">
                       {t.domain}
                     </span>
                   </div>

@@ -5,7 +5,7 @@ import { PROGRAM_JOURNEY } from "@/data/site-content";
 
 export function ProgramJourney() {
   return (
-    <section className="border-t border-violet-500/10 bg-gradient-to-b from-violet-500/5 to-transparent px-4 py-20">
+    <section className="border-t border-cyan-500/10 bg-gradient-to-b from-cyan-500/5 to-transparent px-4 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
           <h2 className="pai-section-title">Registration to Certification</h2>
@@ -22,10 +22,10 @@ export function ProgramJourney() {
               className="pai-surface pai-card-hover rounded-2xl p-5"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-violet-600 dark:text-violet-400">
+                <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 dark:text-cyan-300">
                   Step {j.step}
                 </span>
-                <span className="rounded-full bg-fuchsia-500/15 px-2.5 py-0.5 text-xs font-medium text-fuchsia-700 dark:text-fuchsia-300">
+                <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-300">
                   {j.time}
                 </span>
               </div>

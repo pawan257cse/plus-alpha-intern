@@ -73,7 +73,7 @@ export function DashboardSidebar({
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all",
                 active
-                  ? "bg-gradient-to-r from-violet-600/20 to-indigo-600/20 text-violet-300"
+                  ? "bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 text-cyan-200"
                   : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
               )}
             >
@@ -88,7 +88,7 @@ export function DashboardSidebar({
           <p className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
             <Coins className="h-3 w-3" /> Today
           </p>
-          <p className="text-sm font-bold text-violet-400">
+          <p className="text-sm font-bold text-cyan-300">
             {user?.dailyCoins ?? 0} coins · {user?.dailyXp ?? 0} XP
           </p>
           <p className="text-xs text-muted-foreground">

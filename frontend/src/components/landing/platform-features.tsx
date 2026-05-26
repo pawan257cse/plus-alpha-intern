@@ -25,7 +25,7 @@ export function PlatformFeatures() {
                 className={`mt-3 inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
                   f.status === "Live"
                     ? "bg-emerald-500/15 text-emerald-400"
-                    : "bg-violet-500/15 text-violet-400"
+                    : "bg-cyan-500/15 text-cyan-400"
                 }`}
               >
                 {f.status}

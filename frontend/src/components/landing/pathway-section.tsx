@@ -14,7 +14,7 @@ const pathways = [
       "For experienced developers & professionals — full-time roles, contract work, and enterprise projects.",
     href: "/careers",
     cta: "View Careers",
-    gradient: "from-indigo-600 to-violet-600",
+    gradient: "from-cyan-500 to-emerald-500",
   },
   {
     icon: GraduationCap,
@@ -23,7 +23,7 @@ const pathways = [
       "For ambitious students — hands-on project training, mentors, certificates, and placement support.",
     href: "#domains",
     cta: "Browse Domains",
-    gradient: "from-violet-600 to-fuchsia-600",
+    gradient: "from-emerald-500 to-cyan-500",
   },
 ];
 
@@ -77,10 +77,10 @@ export function PathwaySection() {
         <div className="grid gap-4 sm:grid-cols-2">
           {quickLinks.map((link) => (
             <Link key={link.href} href={link.href}>
-              <Card className="cursor-pointer transition-all hover:border-violet-500/30 hover:bg-white/[0.06]">
+              <Card className="cursor-pointer transition-all hover:border-cyan-500/30 hover:bg-white/[0.06]">
                 <CardContent className="flex items-center gap-4 py-5">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/15">
-                    <link.icon className="h-6 w-6 text-violet-400" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/15">
+                    <link.icon className="h-6 w-6 text-cyan-300" />
                   </div>
                   <div>
                     <p className="font-semibold">{link.label}</p>

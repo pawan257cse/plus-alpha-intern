@@ -15,7 +15,7 @@ import { InternshipDomains } from "@/components/landing/internship-domains";
 export default function InternshipProgramPage() {
   return (
     <PageShell>
-      <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
+      <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
         Internship Program
       </p>
       <h1 className="mt-2 text-3xl font-bold text-foreground md:text-4xl">
@@ -42,9 +42,9 @@ export default function InternshipProgramPage() {
         {HOW_IT_WORKS.map((step) => (
           <div
             key={step.step}
-            className="flex gap-4 rounded-xl border border-violet-500/15 bg-violet-500/5 p-5"
+            className="flex gap-4 rounded-xl border border-cyan-500/15 bg-cyan-500/5 p-5"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-violet-600 text-sm font-bold text-white">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-500 text-sm font-bold text-white">
               {step.step}
             </span>
             <div>
@@ -60,9 +60,9 @@ export default function InternshipProgramPage() {
         {PROGRAM_JOURNEY.map((j) => (
           <Card key={j.step}>
             <CardContent className="pt-5">
-              <p className="text-xs font-bold uppercase text-violet-400">Step {j.step}</p>
+              <p className="text-xs font-bold uppercase text-cyan-400">Step {j.step}</p>
               <p className="mt-1 font-semibold text-foreground">{j.title}</p>
-              <p className="mt-1 text-xs text-fuchsia-300">{j.time}</p>
+              <p className="mt-1 text-xs text-emerald-300">{j.time}</p>
               <p className="mt-2 text-sm pai-muted">{j.desc}</p>
             </CardContent>
           </Card>

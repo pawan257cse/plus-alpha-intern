@@ -49,7 +49,7 @@ function VerifyOTPForm() {
   };
 
   return (
-    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-white/5 w-full">
+    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-[rgba(8,10,22,0.55)] w-full">
       <CardHeader className="text-center">
         <CardTitle>Verify your email</CardTitle>
         <CardDescription className="pai-subtext">Enter the 6-digit code sent to {email}</CardDescription>
@@ -68,7 +68,7 @@ function VerifyOTPForm() {
             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Verify & Continue"}
           </Button>
         </form>
-        <button type="button" onClick={resendOTP} className="mt-4 w-full text-center text-sm text-violet-500 hover:underline">
+        <button type="button" onClick={resendOTP} className="mt-4 w-full text-center text-sm text-cyan-400 hover:underline dark:text-cyan-300">
           Resend OTP
         </button>
         <Link href="/login" className="mt-4 block text-center text-sm pai-muted hover:underline">
@@ -81,7 +81,7 @@ function VerifyOTPForm() {
 
 export default function VerifyOTPPage() {
   return (
-    <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin mx-auto text-violet-500" />}>
+    <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin mx-auto text-cyan-400" />}>
       <VerifyOTPForm />
     </Suspense>
   );

@@ -56,7 +56,7 @@ export function Features() {
         >
           <h2 className="text-3xl font-bold md:text-5xl">
             Everything to{" "}
-            <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
               accelerate your career
             </span>
           </h2>
@@ -74,10 +74,10 @@ export function Features() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
             >
-              <Card className="group h-full hover:-translate-y-1 hover:shadow-violet-500/10">
+              <Card className="group h-full hover:-translate-y-1 hover:shadow-cyan-500/10">
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600/20 to-indigo-600/20 transition-colors group-hover:from-violet-600/40 group-hover:to-indigo-600/40">
-                    <feature.icon className="h-6 w-6 text-violet-400" />
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-600/20 to-emerald-600/20 transition-colors group-hover:from-cyan-600/40 group-hover:to-emerald-600/40">
+                    <feature.icon className="h-6 w-6 text-cyan-300" />
                   </div>
                   <CardTitle>{feature.title}</CardTitle>
                   <CardDescription>{feature.description}</CardDescription>

@@ -47,7 +47,7 @@ function ResetPasswordForm() {
       <Card className="pai-gradient-border w-full">
         <CardContent className="py-8 text-center">
           <p className="pai-subtext">Invalid reset link.</p>
-          <Link href="/forgot-password" className="mt-4 inline-block text-violet-500 hover:underline">
+          <Link href="/forgot-password" className="mt-4 inline-block text-cyan-400 hover:underline dark:text-cyan-300">
             Request a new link
           </Link>
         </CardContent>
@@ -56,10 +56,10 @@ function ResetPasswordForm() {
   }
 
   return (
-    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-white/5 w-full">
+    <Card className="pai-gradient-border border-white/10 bg-white/60 shadow-2xl backdrop-blur-2xl dark:bg-[rgba(8,10,22,0.55)] w-full">
       <CardHeader className="text-center">
-        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-violet-500/15">
-          <KeyRound className="h-6 w-6 text-violet-500" />
+        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-500/15">
+          <KeyRound className="h-6 w-6 text-cyan-500" />
         </div>
         <CardTitle>Set new password</CardTitle>
         <CardDescription className="pai-subtext">Choose a strong password for {email}</CardDescription>
@@ -78,7 +78,7 @@ function ResetPasswordForm() {
             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Update password"}
           </Button>
         </form>
-        <Link href="/login" className="mt-4 block text-center text-sm text-violet-500 hover:underline">
+        <Link href="/login" className="mt-4 block text-center text-sm text-cyan-400 hover:underline dark:text-cyan-300">
           Back to login
         </Link>
       </CardContent>

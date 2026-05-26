@@ -28,20 +28,20 @@ const linkClass =
 
 export function Footer() {
   return (
-    <footer className="pai-footer relative border-t border-violet-500/25 px-4 py-16">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-400/60 to-transparent" />
+    <footer className="pai-footer relative border-t border-cyan-500/25 px-4 py-16">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" />
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <BrandLogo size={40} className="items-start" />
           <p className="mt-4 text-sm leading-relaxed text-slate-300">{SITE_CONFIG.tagline}</p>
-          <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-violet-200">
-            <Sparkles className="h-3 w-3 text-fuchsia-300" />
+          <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-cyan-200">
+            <Sparkles className="h-3 w-3 text-emerald-300" />
             Free registration · Pay on task submit
           </p>
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-violet-300">
+          <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-cyan-200">
             Quick Links
           </h4>
           <ul className="space-y-2.5">
@@ -56,7 +56,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-violet-300">
+          <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-cyan-200">
             Program
           </h4>
           <ul className="space-y-2.5">
@@ -80,16 +80,16 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-violet-300">
+          <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-cyan-200">
             Contact
           </h4>
           <ul className="space-y-3 text-sm text-slate-300">
             <li className="flex gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-violet-300" />
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" />
               {SITE_CONFIG.address}
             </li>
             <li className="flex gap-2">
-              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-violet-300" />
+              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" />
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 className="text-slate-200 underline-offset-4 hover:text-white hover:underline"
@@ -101,7 +101,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-violet-500/20 pt-8 text-center">
+      <div className="mx-auto mt-12 max-w-7xl border-t border-cyan-500/20 pt-8 text-center">
         <p className="text-sm text-slate-300">
           © {new Date().getFullYear()}{" "}
           <span className="font-semibold text-white">{SITE_CONFIG.name}</span> ·{" "}

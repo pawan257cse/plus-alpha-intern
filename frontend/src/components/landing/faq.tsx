@@ -22,7 +22,7 @@ export function FAQ() {
           {FAQ_ITEMS.map((faq, i) => (
             <div
               key={i}
-              className="overflow-hidden rounded-2xl border border-violet-500/20 bg-violet-500/5"
+              className="overflow-hidden rounded-2xl border border-cyan-500/20 bg-cyan-500/5"
             >
               <button
                 type="button"
@@ -31,7 +31,7 @@ export function FAQ() {
               >
                 {faq.q}
                 <ChevronDown
-                  className={cn("h-5 w-5 shrink-0 text-violet-400 transition", open === i && "rotate-180")}
+                  className={cn("h-5 w-5 shrink-0 text-cyan-400 transition", open === i && "rotate-180")}
                 />
               </button>
               <AnimatePresence>
@@ -41,7 +41,7 @@ export function FAQ() {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                   >
-                    <p className="border-t border-violet-500/15 px-5 pb-5 pt-3 text-sm leading-relaxed pai-subtext">
+                    <p className="border-t border-cyan-500/15 px-5 pb-5 pt-3 text-sm leading-relaxed pai-subtext">
                       {faq.a}
                     </p>
                   </motion.div>

@@ -34,16 +34,16 @@ export function InternshipDomains({ limit }: { limit?: number }) {
               viewport={{ once: true }}
               transition={{ delay: (i % 8) * 0.04 }}
             >
-              <Card className="group h-full hover:border-violet-500/40">
+              <Card className="group h-full hover:border-cyan-500/40">
                 <CardContent className="flex h-full flex-col pt-5">
                   {domain.badge && (
-                    <span className="mb-2 w-fit rounded-full bg-fuchsia-500/15 px-2 py-0.5 text-[10px] font-medium text-fuchsia-700 dark:text-fuchsia-300">
+                    <span className="mb-2 w-fit rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-medium text-emerald-700 dark:text-emerald-300">
                       {domain.badge}
                     </span>
                   )}
                   <h3 className="font-semibold leading-snug text-foreground">{domain.title}</h3>
                   <p className="mt-2 text-xs leading-relaxed pai-muted">{domain.description}</p>
-                  <p className="mt-2 text-[10px] font-medium uppercase tracking-wide text-violet-400">
+                  <p className="mt-2 text-[10px] font-medium uppercase tracking-wide text-cyan-300">
                     {domain.duration} · {domain.mode}
                   </p>
                   <ul className="mt-3 flex-1 space-y-1 text-xs pai-muted">

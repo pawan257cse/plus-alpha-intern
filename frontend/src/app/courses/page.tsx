@@ -23,10 +23,10 @@ export default function CoursesPage() {
           {courses.map((c) => (
             <Card key={c.id} className="hover:-translate-y-1">
               <CardContent className="pt-6">
-                <GraduationCap className="mb-4 h-10 w-10 text-violet-400" />
+                <GraduationCap className="mb-4 h-10 w-10 text-cyan-400" />
                 <h3 className="font-semibold">{c.title}</h3>
                 <p className="text-sm text-muted-foreground">{c.instructor}</p>
-                <p className="mt-2 text-xs text-violet-400">{c.level} · {c.lessons} lessons</p>
+                <p className="mt-2 text-xs text-cyan-400">{c.level} · {c.lessons} lessons</p>
                 <Link href="/signup">
                   <Button variant="accent" className="mt-4 w-full" size="sm">Enroll Free</Button>
                 </Link>

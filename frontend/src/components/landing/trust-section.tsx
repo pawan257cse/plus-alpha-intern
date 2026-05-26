@@ -11,7 +11,7 @@ export function TrustSection() {
     <section className="px-4 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-fuchsia-400/90">
+          <p className="text-sm font-semibold uppercase tracking-widest text-emerald-300/90">
             Trusted · Student-First
           </p>
           <h2 className="pai-section-title mt-2">Why Choose Plus Alpha Intern?</h2>
@@ -32,8 +32,8 @@ export function TrustSection() {
                 viewport={{ once: true }}
                 className="pai-surface pai-card-hover rounded-2xl p-6"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/10">
-                  <Icon className="h-6 w-6 text-violet-400" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-emerald-500/10">
+                  <Icon className="h-6 w-6 text-cyan-300" />
                 </div>
                 <h3 className="font-semibold">{b.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed pai-muted">{b.desc}</p>

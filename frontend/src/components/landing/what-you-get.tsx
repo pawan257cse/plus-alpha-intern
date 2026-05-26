@@ -6,10 +6,10 @@ import { Gift } from "lucide-react";
 
 export function WhatYouGet() {
   return (
-    <section className="border-y border-violet-500/10 bg-violet-500/5 px-4 py-20">
+    <section className="border-y border-cyan-500/10 bg-cyan-500/5 px-4 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
+          <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
             Program Benefits
           </p>
           <h2 className="pai-section-title mt-2">What You Get With Plus Alpha Intern</h2>
@@ -27,7 +27,7 @@ export function WhatYouGet() {
               transition={{ delay: i * 0.05 }}
               className="pai-surface pai-card-hover rounded-2xl p-6"
             >
-              <Gift className="mb-3 h-8 w-8 text-violet-400" />
+              <Gift className="mb-3 h-8 w-8 text-cyan-400" />
               <h3 className="font-semibold text-foreground">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed pai-subtext">{item.desc}</p>
             </motion.div>
