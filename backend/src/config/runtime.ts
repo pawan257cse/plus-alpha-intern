@@ -1,8 +1,12 @@
 import type { CookieOptions } from "express";
 
-export const FRONTEND_URL = "https://plusalphaintern.vercel.app";
+export const FRONTEND_URL =
+  process.env.CLIENT_URL || "https://plusalphaintern.vercel.app";
 
-export const ALLOWED_ORIGINS = [FRONTEND_URL];
+export const ALLOWED_ORIGINS = [
+  "https://plusalphaintern.vercel.app",
+  "http://localhost:3000",
+];
 
 export const isProduction = process.env.NODE_ENV === "production";
 
@@ -12,7 +16,8 @@ const cookieBaseOptions: CookieOptions = {
   path: "/",
 };
 
-const sameSite: CookieOptions["sameSite"] = isProduction ? "none" : "lax";
+const sameSite: CookieOptions["sameSite"] =
+  isProduction ? "none" : "lax";
 
 export const accessTokenCookieOptions = {
   ...cookieBaseOptions,
@@ -33,6 +38,9 @@ export const clearAuthCookieOptions = {
 };
 
 export const buildClientUrl = (path = ""): string => {
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const normalizedPath = path.startsWith("/")
+    ? path
+    : `/${path}`;
+
   return `${FRONTEND_URL}${normalizedPath}`;
 };
