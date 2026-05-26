@@ -30,8 +30,11 @@ export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const resourcesRef = useRef<HTMLDivElement>(null);
+  const mobileProfileRef = useRef<HTMLDivElement>(null);
+  const desktopProfileRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { user, logout } = useAuthStore();
@@ -50,6 +53,7 @@ export function Navbar() {
   useEffect(() => {
     setResourcesOpen(false);
     setMobileOpen(false);
+    setProfileOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -68,6 +72,26 @@ export function Navbar() {
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [resourcesOpen]);
+
+  useEffect(() => {
+    if (!profileOpen) return;
+    const close = () => setProfileOpen(false);
+    const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node;
+      const insideMobile = mobileProfileRef.current?.contains(target);
+      const insideDesktop = desktopProfileRef.current?.contains(target);
+      if (!insideMobile && !insideDesktop) close();
+    };
+    const onKeyDown = (e: KeyboardEvent) => e.key === "Escape" && close();
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [profileOpen]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -111,12 +135,62 @@ export function Navbar() {
                 <span className="h-9 w-9" aria-hidden="true" />
               )}
 
+              {user ? (
+                <div ref={mobileProfileRef} className="relative">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="pai-nav-icon-button w-9 h-9 rounded-full border border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+                    onClick={() => setProfileOpen((o) => !o)}
+                    aria-label="Account menu"
+                  >
+                    <span className="text-xs font-bold">
+                      {(user?.name?.trim()?.[0] || "U").toUpperCase()}
+                    </span>
+                  </Button>
+                  <AnimatePresence>
+                    {profileOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.15 }}
+                        role="menu"
+                        className="pai-nav-dropdown absolute right-0 top-[calc(100%+0.5rem)] z-[1000] min-w-[180px] rounded-2xl p-1.5"
+                      >
+                        <Link
+                          href="/dashboard"
+                          className="block rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-100 transition hover:bg-white/10"
+                          onClick={() => {
+                            setProfileOpen(false);
+                            setMobileOpen(false);
+                          }}
+                        >
+                          Dashboard
+                        </Link>
+                        <button
+                          type="button"
+                          className="mt-1 block w-full rounded-xl px-3.5 py-2.5 text-left text-sm font-medium text-slate-100 transition hover:bg-white/10"
+                          onClick={() => {
+                            setProfileOpen(false);
+                            logout();
+                          }}
+                        >
+                          Logout
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : null}
+
               <Button
                 variant="ghost"
                 size="icon"
                 className="pai-nav-menu-button text-slate-100"
                 onClick={() => {
                   setResourcesOpen(false);
+                  setProfileOpen(false);
                   setMobileOpen(!mobileOpen);
                 }}
                 aria-label="Menu"
@@ -215,21 +289,54 @@ export function Navbar() {
             )}
 
             {user ? (
-              <>
-                <Link href="/dashboard">
-                  <Button variant="glass" size="sm" className="pai-nav-secondary-button text-slate-100">
-                    Dashboard
-                  </Button>
-                </Link>
+              <div ref={desktopProfileRef} className="relative">
                 <Button
                   variant="ghost"
-                  size="sm"
-                  className="pai-nav-icon-button text-slate-200 hover:text-white"
-                  onClick={logout}
+                  size="icon"
+                  className="pai-nav-icon-button w-10 h-10 rounded-full border border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+                  onClick={() => {
+                    setProfileOpen((o) => !o);
+                    setResourcesOpen(false);
+                  }}
+                  aria-label="Account menu"
                 >
-                  Logout
+                  <span className="text-xs font-bold">
+                    {(user?.name?.trim()?.[0] || "U").toUpperCase()}
+                  </span>
                 </Button>
-              </>
+                <AnimatePresence>
+                  {profileOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.15 }}
+                      role="menu"
+                      className="pai-nav-dropdown absolute right-0 top-[calc(100%+0.5rem)] z-[1000] min-w-[180px] rounded-2xl p-1.5"
+                    >
+                      <Link
+                        href="/dashboard"
+                        className="block rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-100 transition hover:bg-white/10"
+                        onClick={() => {
+                          setProfileOpen(false);
+                        }}
+                      >
+                        Dashboard
+                      </Link>
+                      <button
+                        type="button"
+                        className="mt-1 block w-full rounded-xl px-3.5 py-2.5 text-left text-sm font-medium text-slate-100 transition hover:bg-white/10"
+                        onClick={() => {
+                          setProfileOpen(false);
+                          logout();
+                        }}
+                      >
+                        Logout
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ) : (
               <div className="flex items-center gap-1.5">
                 <Link href="/login">
