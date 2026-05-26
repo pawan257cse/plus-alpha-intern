@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/store/auth-store";
 import { Button } from "@/components/ui/button";
 
-const links = [
+export const adminLinks = [
   { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/admin/users", icon: Users, label: "Users" },
   { href: "/admin/internships", icon: Briefcase, label: "Internships" },
@@ -46,7 +46,7 @@ export function AdminSidebar() {
         <p className="truncate text-xs text-muted-foreground">{user?.email}</p>
       </div>
       <nav className="flex-1 space-y-0.5 p-2">
-        {links.map((link) => {
+        {adminLinks.map((link) => {
           const active =
             pathname === link.href ||
             (link.href !== "/admin" && pathname.startsWith(link.href));
