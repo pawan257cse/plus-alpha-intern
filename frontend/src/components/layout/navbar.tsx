@@ -4,13 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Moon, Sun, ChevronDown, Sparkles } from "lucide-react";
+import { Menu, X, Moon, Sun, ChevronDown } from "lucide-react";
 import { BrandLogo } from "@/components/brand/logo";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/store/auth-store";
-import { SITE_CONFIG } from "@/data/site-content";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -75,32 +74,23 @@ export function Navbar() {
 
   const navLinkClass = (href: string, highlight?: boolean) =>
     cn(
-      "pai-nav-link whitespace-nowrap rounded-xl px-2.5 py-2 text-[13px] font-medium xl:px-3 xl:text-sm",
+      "pai-nav-link group whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium tracking-[0.01em] xl:px-4 xl:text-sm",
       isActive(href)
         ? "pai-nav-link-active text-white"
         : highlight
-          ? "text-fuchsia-200 hover:bg-fuchsia-500/15 hover:text-white"
-          : "text-slate-200 hover:bg-white/10 hover:text-white"
+          ? "text-cyan-100 hover:bg-cyan-400/10 hover:text-white"
+          : "text-slate-200/90 hover:bg-white/6 hover:text-white"
     );
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-2 pt-2 sm:px-4 sm:pt-3 md:px-5 md:pt-4">
+    <header className="fixed inset-x-0 top-0 z-50">
       <div
         className={cn(
-          "pai-nav-shell relative mx-auto max-w-7xl rounded-2xl transition-shadow duration-300 md:rounded-[1.35rem]",
-          scrolled && "shadow-[0_12px_48px_rgba(0,0,0,0.5)]"
+          "pai-nav-shell relative w-full transition-shadow duration-300",
+          scrolled && "shadow-[0_16px_46px_rgba(0,0,0,0.42)]"
         )}
       >
-        <div className="pai-announce-bar hidden items-center justify-center gap-2 px-4 py-1.5 text-[11px] font-medium text-slate-200 sm:flex">
-          <Sparkles className="h-3 w-3 shrink-0 text-violet-300" />
-          <span className="text-center">
-            <strong className="pai-brand-text text-xs font-bold">{SITE_CONFIG.name}</strong>
-            <span className="mx-2 opacity-50">|</span>
-            Free registration · Pay only on task submit
-          </span>
-        </div>
-
-        <nav className="flex min-h-[4.25rem] flex-wrap items-center justify-between gap-2 px-2 py-2 sm:px-4 md:px-5">
+        <nav className="mx-auto flex min-h-[4.25rem] max-w-7xl flex-wrap items-center justify-between gap-2 px-3 py-2 sm:px-5 md:px-6 lg:px-8">
           <BrandLogo size={42} className="shrink-0" />
 
           <div className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">
@@ -119,7 +109,7 @@ export function Navbar() {
               href={submitTaskHref}
               className={cn(
                 navLinkClass("/submit-task", true),
-                "ml-0.5 border border-fuchsia-400/40 bg-fuchsia-500/10"
+                "ml-0.5 border border-cyan-400/25 bg-gradient-to-r from-cyan-400/12 via-fuchsia-500/10 to-violet-500/12 shadow-[0_0_0_1px_rgba(34,211,238,0.08),0_10px_30px_rgba(14,165,233,0.12)]"
               )}
             >
               Submit Task
@@ -130,18 +120,17 @@ export function Navbar() {
                 type="button"
                 aria-expanded={resourcesOpen}
                 className={cn(
-                  "pai-nav-link flex items-center gap-1 rounded-xl px-2.5 py-2 text-[13px] font-medium xl:px-3 xl:text-sm",
+                  "pai-nav-link flex items-center gap-1 rounded-full px-3 py-2 text-[13px] font-medium tracking-[0.01em] xl:px-4 xl:text-sm",
                   resourcesOpen
                     ? "pai-nav-link-active text-white"
-                    : "text-slate-200 hover:bg-white/10 hover:text-white"
+                    : "text-slate-200/90 hover:bg-white/6 hover:text-white"
                 )}
                 onClick={() => setResourcesOpen((o) => !o)}
               >
                 More
-                <ChevronDown
-                  className={cn("h-4 w-4 transition-transform", resourcesOpen && "rotate-180")}
-                />
+                <ChevronDown className={cn("h-4 w-4 transition-transform", resourcesOpen && "rotate-180")} />
               </button>
+
               <AnimatePresence>
                 {resourcesOpen && (
                   <motion.div
@@ -167,32 +156,32 @@ export function Navbar() {
             </div>
           </div>
 
-          <div className="flex shrink-0 items-center gap-1 sm:gap-1.5">
-            {mounted && (
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            {mounted ? (
               <Button
                 variant="ghost"
                 size="icon"
-                className="hidden text-slate-200 hover:text-white sm:flex"
+                className="pai-nav-icon-button hidden text-slate-200 hover:text-white sm:flex"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
+            ) : (
+              <span className="hidden h-9 w-9 sm:flex" aria-hidden="true" />
             )}
+
             {user ? (
               <>
-                <Link
-                  href="/dashboard"
-                  className="hidden sm:block"
-                >
-                  <Button variant="glass" size="sm" className="text-slate-100">
+                <Link href="/dashboard" className="hidden sm:block">
+                  <Button variant="glass" size="sm" className="pai-nav-secondary-button text-slate-100">
                     Dashboard
                   </Button>
                 </Link>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="hidden text-slate-200 hover:text-white sm:flex"
+                  className="pai-nav-icon-button hidden text-slate-200 hover:text-white sm:flex"
                   onClick={logout}
                 >
                   Logout
@@ -201,21 +190,22 @@ export function Navbar() {
             ) : (
               <div className="hidden items-center gap-1.5 sm:flex">
                 <Link href="/login">
-                  <Button variant="ghost" size="sm" className="text-slate-100 hover:text-white">
+                  <Button variant="ghost" size="sm" className="pai-nav-login-button text-slate-100 hover:text-white">
                     Login
                   </Button>
                 </Link>
                 <Link href="/signup">
-                  <Button variant="accent" size="sm">
+                  <Button variant="accent" size="sm" className="pai-nav-register-button">
                     Register
                   </Button>
                 </Link>
               </div>
             )}
+
             <Button
               variant="ghost"
               size="icon"
-              className="text-slate-100 lg:hidden"
+              className="pai-nav-menu-button text-slate-100 lg:hidden"
               onClick={() => {
                 setResourcesOpen(false);
                 setMobileOpen(!mobileOpen);
@@ -233,7 +223,7 @@ export function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="border-t border-violet-500/20 lg:hidden"
+              className="pai-nav-mobile-panel border-t border-violet-500/20 lg:hidden"
             >
               <div className="max-h-[75vh] space-y-0.5 overflow-y-auto p-3">
                 {[...navLinks, { href: submitTaskHref, label: "Submit Task" }].map((link) => (
@@ -241,7 +231,7 @@ export function Navbar() {
                     key={link.href + link.label}
                     href={link.href}
                     className={cn(
-                      "block rounded-xl px-4 py-3 text-sm font-medium",
+                      "pai-nav-mobile-link block rounded-xl px-4 py-3 text-sm font-medium",
                       isActive(link.href.startsWith("/login") ? "/submit-task" : link.href)
                         ? "bg-violet-500/25 text-white"
                         : "text-slate-200 hover:bg-white/10 hover:text-white"
@@ -264,12 +254,12 @@ export function Navbar() {
                 {!user && (
                   <div className="flex gap-2 pt-3">
                     <Link href="/login" className="flex-1" onClick={() => setMobileOpen(false)}>
-                      <Button variant="outline" className="w-full border-slate-500 text-slate-100">
+                      <Button variant="outline" className="pai-nav-login-button w-full border-slate-500 text-slate-100">
                         Login
                       </Button>
                     </Link>
                     <Link href="/signup" className="flex-1" onClick={() => setMobileOpen(false)}>
-                      <Button variant="accent" className="w-full">
+                      <Button variant="accent" className="pai-nav-register-button w-full">
                         Register
                       </Button>
                     </Link>
