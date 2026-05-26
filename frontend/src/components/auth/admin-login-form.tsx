@@ -77,7 +77,7 @@ function AdminLoginFormInner() {
             <Input
               id="admin-email"
               type="email"
-              placeholder="admin@plusalphaintern.com"
+              placeholder="onlyadmin@gmail.com"
               className="pai-input"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
