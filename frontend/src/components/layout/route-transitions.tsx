@@ -7,14 +7,16 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 export function RouteTransitions({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
+  const initialAnim = reduceMotion ? undefined : { opacity: 0, y: 10 };
+  const exitAnim = reduceMotion ? undefined : { opacity: 0, y: -8 };
 
   return (
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={pathname}
-        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+        initial={initialAnim}
         animate={{ opacity: 1, y: 0 }}
-        exit={reduceMotion ? false : { opacity: 0, y: -8 }}
+        exit={exitAnim}
         transition={{ duration: reduceMotion ? 0 : 0.18, ease: "easeOut" }}
       >
         {children}
