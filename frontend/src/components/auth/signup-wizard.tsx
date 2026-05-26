@@ -263,7 +263,7 @@ function SignupWizardInner() {
                 <ChevronLeft className="h-4 w-4 mr-1" /> Back
               </Button>
             )}
-            <Button type="submit" className="flex-1 h-11" disabled={loading}>
+            <Button type="submit" variant="accent" className="flex-1 h-11" disabled={loading}>
               {loading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : step < STEPS.length - 1 ? (

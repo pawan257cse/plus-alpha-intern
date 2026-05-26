@@ -16,7 +16,9 @@ export default function AboutPage() {
       <h1 className="mt-2 text-3xl font-bold text-foreground md:text-4xl">
         About {SITE_CONFIG.name}
       </h1>
-      <p className="mt-4 max-w-3xl text-lg pai-subtext">{SITE_CONFIG.heroSubtitle}</p>
+      {SITE_CONFIG.heroSubtitle && (
+        <p className="mt-4 max-w-3xl text-lg pai-subtext">{SITE_CONFIG.heroSubtitle}</p>
+      )}
 
       <div className="mt-12 space-y-10">
         {ABOUT_SECTIONS.map((section) => (
@@ -52,7 +54,7 @@ export default function AboutPage() {
 
       <div className="mt-12 flex flex-wrap gap-4">
         <Link href="/signup">
-          <Button size="lg">Register Free</Button>
+          <Button size="lg" variant="accent">Register Free</Button>
         </Link>
         <Link href="/domains">
           <Button size="lg" variant="outline">

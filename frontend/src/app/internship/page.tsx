@@ -21,7 +21,9 @@ export default function InternshipProgramPage() {
       <h1 className="mt-2 text-3xl font-bold text-foreground md:text-4xl">
         Industry-Oriented Online Internship
       </h1>
-      <p className="mt-4 max-w-3xl text-lg pai-subtext">{SITE_CONFIG.heroSubtitle}</p>
+      {SITE_CONFIG.heroSubtitle && (
+        <p className="mt-4 max-w-3xl text-lg pai-subtext">{SITE_CONFIG.heroSubtitle}</p>
+      )}
 
       <h2 className="mb-6 mt-12 text-xl font-bold text-foreground">Program Benefits</h2>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -83,7 +85,7 @@ export default function InternshipProgramPage() {
 
       <div className="mt-12 flex flex-wrap gap-4">
         <Link href="/signup">
-          <Button size="lg">Register Free</Button>
+          <Button size="lg" variant="accent">Register Free</Button>
         </Link>
         <Link href="/login?redirect=%2Fsubmit-task">
           <Button size="lg" variant="outline">

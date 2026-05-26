@@ -34,7 +34,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="text-center text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+          className="pai-tnr text-center text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
         >
           Launch Your Career with
           <br />
@@ -45,19 +45,21 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mx-auto mt-4 max-w-2xl text-center text-lg font-medium pai-subtext"
+          className="pai-tnr mx-auto mt-4 max-w-none whitespace-nowrap px-2 text-center text-lg font-medium pai-subtext"
         >
           {SITE_CONFIG.tagline}
         </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.12 }}
-          className="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed pai-subtext md:text-lg"
-        >
-          {SITE_CONFIG.heroSubtitle}
-        </motion.p>
+        {SITE_CONFIG.heroSubtitle && (
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12 }}
+            className="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed pai-subtext md:text-lg"
+          >
+            {SITE_CONFIG.heroSubtitle}
+          </motion.p>
+        )}
 
         <motion.ul
           initial={{ opacity: 0 }}

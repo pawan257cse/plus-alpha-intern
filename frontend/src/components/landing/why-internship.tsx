@@ -44,7 +44,7 @@ export function WhyInternship() {
               ))}
             </ul>
             <Link href="/signup">
-              <Button className="mt-4 w-full sm:w-auto" size="lg">
+              <Button variant="accent" className="mt-4 w-full sm:w-auto" size="lg">
                 Secure My Internship Spot
               </Button>
             </Link>

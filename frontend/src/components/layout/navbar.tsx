@@ -72,14 +72,16 @@ export function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  const isResourceActive = () => resourceLinks.some((r) => isActive(r.href));
+
   const navLinkClass = (href: string, highlight?: boolean) =>
     cn(
       "pai-nav-link group whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium tracking-[0.01em] xl:px-4 xl:text-sm",
       isActive(href)
         ? "pai-nav-link-active text-white"
         : highlight
-          ? "text-cyan-100 hover:bg-cyan-400/10 hover:text-white"
-          : "text-slate-200/90 hover:bg-white/6 hover:text-white"
+          ? "text-purple-700 hover:bg-purple-50 hover:text-purple-900"
+          : "text-gray-700 hover:bg-purple-50 hover:text-purple-900"
     );
 
   return (
@@ -119,13 +121,21 @@ export function Navbar() {
               <button
                 type="button"
                 aria-expanded={resourcesOpen}
+                aria-haspopup="menu"
+                aria-controls="resources-menu"
                 className={cn(
                   "pai-nav-link flex items-center gap-1 rounded-full px-3 py-2 text-[13px] font-medium tracking-[0.01em] xl:px-4 xl:text-sm",
-                  resourcesOpen
+                  resourcesOpen || isResourceActive()
                     ? "pai-nav-link-active text-white"
-                    : "text-slate-200/90 hover:bg-white/6 hover:text-white"
+                    : "text-gray-700 hover:bg-purple-50 hover:text-purple-900"
                 )}
-                onClick={() => setResourcesOpen((o) => !o)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setResourcesOpen((o) => !o);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setResourcesOpen(false);
+                }}
               >
                 More
                 <ChevronDown className={cn("h-4 w-4 transition-transform", resourcesOpen && "rotate-180")} />
@@ -138,13 +148,15 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.15 }}
-                    className="pai-nav-dropdown absolute right-0 top-[calc(100%+0.5rem)] z-[100] min-w-[220px] rounded-2xl p-1.5"
+                    id="resources-menu"
+                    role="menu"
+                    className="pai-nav-dropdown absolute right-0 top-[calc(100%+0.5rem)] z-[1000] min-w-[220px] rounded-2xl p-1.5"
                   >
                     {resourceLinks.map((r) => (
                       <Link
                         key={r.href}
                         href={r.href}
-                        className="block rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-violet-500/25 hover:text-white"
+                        className="block rounded-xl px-3.5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-purple-50 hover:text-purple-900"
                         onClick={() => setResourcesOpen(false)}
                       >
                         {r.label}

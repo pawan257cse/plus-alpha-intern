@@ -28,7 +28,7 @@ export default function CoursesPage() {
                 <p className="text-sm text-muted-foreground">{c.instructor}</p>
                 <p className="mt-2 text-xs text-violet-400">{c.level} · {c.lessons} lessons</p>
                 <Link href="/signup">
-                  <Button className="mt-4 w-full" size="sm">Enroll Free</Button>
+                  <Button variant="accent" className="mt-4 w-full" size="sm">Enroll Free</Button>
                 </Link>
               </CardContent>
             </Card>

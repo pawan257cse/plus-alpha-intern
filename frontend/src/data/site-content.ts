@@ -6,8 +6,7 @@ export const SITE_CONFIG = {
   logoSrc: "/logo.png",
   tagline:
     "Online Internships with Verified Certificates — Project-based learning for students across India.",
-  heroSubtitle:
-    "Register free, complete weekly projects with mentor support, and pay the internship fee only when you submit your final task. Get offer letter access, verified certificate, and college-ready documents.",
+  heroSubtitle: "",
   poweredBy: "Plus Alpha Intern",
   msmeNote: "Skill development initiative — Jaipur, Rajasthan",
   udyamNumber: "",
