@@ -92,8 +92,39 @@ export function Navbar() {
           scrolled && "shadow-[0_16px_46px_rgba(0,0,0,0.42)]"
         )}
       >
-        <nav className="mx-auto flex min-h-[4.25rem] max-w-7xl flex-wrap items-center justify-between gap-2 px-3 py-2 sm:px-5 md:px-6 lg:px-8">
-          <BrandLogo size={42} className="shrink-0" />
+        <nav className="mx-auto flex min-h-[4.25rem] max-w-7xl flex-col gap-2 px-3 py-2 sm:px-5 md:px-6 lg:min-h-[5rem] lg:flex-row lg:items-center lg:justify-between lg:gap-3 lg:px-8">
+          <div className="flex w-full items-center justify-between gap-3 lg:min-w-0 lg:flex-1 lg:justify-start">
+            <BrandLogo size={42} className="shrink-0" />
+
+            <div className="flex items-center gap-1 sm:gap-1.5 lg:hidden">
+              {mounted ? (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="pai-nav-icon-button text-slate-200 hover:text-white"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  aria-label="Toggle theme"
+                >
+                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                </Button>
+              ) : (
+                <span className="h-9 w-9" aria-hidden="true" />
+              )}
+
+              <Button
+                variant="ghost"
+                size="icon"
+                className="pai-nav-menu-button text-slate-100"
+                onClick={() => {
+                  setResourcesOpen(false);
+                  setMobileOpen(!mobileOpen);
+                }}
+                aria-label="Menu"
+              >
+                {mobileOpen ? <X /> : <Menu />}
+              </Button>
+            </div>
+          </div>
 
           <div className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">
             {navLinks.map((link) => (
@@ -168,24 +199,24 @@ export function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center gap-1 sm:gap-1.5">
+          <div className="hidden items-center gap-1.5 sm:flex lg:justify-end">
             {mounted ? (
               <Button
                 variant="ghost"
                 size="icon"
-                className="pai-nav-icon-button hidden text-slate-200 hover:text-white sm:flex"
+                className="pai-nav-icon-button text-slate-200 hover:text-white"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
             ) : (
-              <span className="hidden h-9 w-9 sm:flex" aria-hidden="true" />
+              <span className="h-9 w-9" aria-hidden="true" />
             )}
 
             {user ? (
               <>
-                <Link href="/dashboard" className="hidden sm:block">
+                <Link href="/dashboard">
                   <Button variant="glass" size="sm" className="pai-nav-secondary-button text-slate-100">
                     Dashboard
                   </Button>
@@ -193,14 +224,14 @@ export function Navbar() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="pai-nav-icon-button hidden text-slate-200 hover:text-white sm:flex"
+                  className="pai-nav-icon-button text-slate-200 hover:text-white"
                   onClick={logout}
                 >
                   Logout
                 </Button>
               </>
             ) : (
-              <div className="hidden items-center gap-1.5 sm:flex">
+              <div className="flex items-center gap-1.5">
                 <Link href="/login">
                   <Button variant="ghost" size="sm" className="pai-nav-login-button text-slate-100 hover:text-white">
                     Login
@@ -214,18 +245,6 @@ export function Navbar() {
               </div>
             )}
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="pai-nav-menu-button text-slate-100 lg:hidden"
-              onClick={() => {
-                setResourcesOpen(false);
-                setMobileOpen(!mobileOpen);
-              }}
-              aria-label="Menu"
-            >
-              {mobileOpen ? <X /> : <Menu />}
-            </Button>
           </div>
         </nav>
 
