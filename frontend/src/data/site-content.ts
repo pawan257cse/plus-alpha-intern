@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   shortName: "Plus Alpha",
   logoSrc: "/logo.png",
   tagline:
-    "Online Internships with Verified Certificates — Project-based learning for students across India.",
+    "Online Internships with Verified Certificates.",
   heroSubtitle: "",
   poweredBy: "Plus Alpha Intern",
   msmeNote: "Skill development initiative — Jaipur, Rajasthan",
